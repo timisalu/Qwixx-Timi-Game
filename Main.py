@@ -1,3 +1,63 @@
+import random
+from operator import truediv
+
+
+class Spaces:
+    def __init__(self, number, colour, occupied):
+        self.number = number
+        self.colour = colour
+        self.occupied = occupied
+
+
+red2 = Spaces(2, "red", "no")
+red3 = Spaces(3,"red","no")
+red4 = Spaces(4,"red","no")
+red5 = Spaces(5,"red","no")
+red6 = Spaces(6,"red","no")
+red7 = Spaces(7,"red","no")
+red8 = Spaces(8,"red","no")
+red9 = Spaces(9,"red","no")
+red10 = Spaces(10,"red","no")
+red11= Spaces(11,"red","no")
+red12= Spaces(12,"red","no")
+redrow = [red2, red3, red4, red5, red6, red7, red8, red9, red10, red11, red12]
+blue2 = Spaces(2, "blue", "no")
+blue3 = Spaces(3,"blue","no")
+blue4 = Spaces(4,"blue","no")
+blue5 = Spaces(5,"blue","no")
+blue6 = Spaces(6,"blue","no")
+blue7 = Spaces(7,"blue","no")
+blue8 = Spaces(8,"blue","no")
+blue9 = Spaces(9,"blue","no")
+blue10 = Spaces(10,"blue","no")
+blue11= Spaces(11,"blue","no")
+blue12= Spaces(12,"blue","no")
+bluerow = [blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, blue10, blue11, blue12]
+yellow2 = Spaces(2, "yellow", "no")
+yellow3 = Spaces(3, "yellow", "no")
+yellow4 = Spaces(4, "yellow", "no")
+yellow5 = Spaces(5, "yellow", "no")
+yellow6 = Spaces(6, "yellow", "no")
+yellow7 = Spaces(7, "yellow", "no")
+yellow8 = Spaces(8, "yellow", "no")
+yellow9 = Spaces(9, "yellow", "no")
+yellow10 = Spaces(10, "yellow", "no")
+yellow11= Spaces(11, "yellow", "no")
+yellow12= Spaces(12, "yellow", "no")
+yellowrow = [yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow10, yellow11, yellow12]
+green2 = Spaces(2, "green", "no")
+green3 = Spaces(3, "green", "no")
+green4 = Spaces(4, "green", "no")
+green5 = Spaces(5, "green", "no")
+green6 = Spaces(6, "green", "no")
+green7 = Spaces(7, "green", "no")
+green8 = Spaces(8, "green", "no")
+green9 = Spaces(9, "green", "no")
+green10 = Spaces(10, "green", "no")
+green11 = Spaces(11, "green", "no")
+green12= Spaces(12, "green", "no")
+greenrow = [green2, green3, green4, green5, green6, green7, green8, green9, green10, green11, green12]
+
 ruless = ("""QWIXX – HOW TO PLAY
 Simple Game Instructions
 1. OBJECTIVE
@@ -11,7 +71,7 @@ Get the highest score by crossing off numbers in the four coloured rows on your 
 1 yellow die
 1 green die
 1 blue die
-One score sheet and pencil per player
+
 3. UNDERSTANDING THE SCORE SHEET
 
 There are four coloured rows:
@@ -133,38 +193,95 @@ Two locked rows end the game.
 
 HAVE FUN AND GOOD LUCK!""")
 
-import climage
-
-# is_unicode=True gives higher resolution blocks; is_truecolor=True enables full RGB colors
-#output = climage.convert(r"C:\Users\timisalu\Downloads\qUIXX.jpg", is_unicode=True, width=180)
-#print(output)
 yes_responses = {"yes", "y", "yeah", "yep", "yup", "sure", "ok","okay","ready","ya"}
 no_responses = {"no", "na", "n"}
 person_yes = {"person", "people"}
 ai_response = {"ai", "bot" }
 answer = input("Ready to play Qwixx: Yes or No").strip().lower()
-person_yes = {"person", "people", ""}
+game_running = True
+
+while game_running:
+
+def print_board():
+    print("\nred   │ " + str(red2.number) + " │ " + str(red3.number) + " │ " + str(red4.number) +" │ " + str(red5.number) +" │ " + str(red6.number) +" │ " + str(red7.number) + " │ " + str(red8.number) + " │ " + str(red9.number) + " │ " + str(red10.number) +" │ " + str(red11.number) + " │ " + str(red12.number) + " 🔒│" )
+    print("yellow│ " + str(yellow2.number) + " │ " + str(yellow3.number) + " │ "  + str(yellow4.number) + " │ " + str(yellow5.number) + " │ " + str(yellow6.number) + " │ " + str(yellow7.number) + " │ " + str(yellow8.number) + " │ " + str(yellow9.number) + " │ " + str(yellow10.number) + " │ " + str(yellow11.number) + " │ " + str(yellow12.number) + " 🔒│ ")
+    print("blue  │ " + str(blue12.number) + "│ " + str(blue11.number) + "│ " + str(blue10.number) + "│ " + str(blue9.number) + " │ " + str(blue8.number) + " │ " + str(blue7.number) + " │ " + str(blue6.number) + " │ " + str(blue5.number) + " │ " + str(blue4.number) + "  │ " + str(blue3.number) + "  │ " + str(blue2.number) + "  🔒│ ")
+    print("green │ " + str(green12.number) + "│ " + str(green11.number) + "│ " + str(green10.number) + "│ " + str(green9.number) + " │ " + str(green8.number) + " │ " + str(green7.number) + " │ " + str(green6.number) + " │ " + str(green5.number) + " │ " + str(green4.number) + "  │ " + str(green3.number) + "  │ " + str(green2.number) + "  🔒│ ")
 if answer in yes_responses:
     rules = input("Do you want the rules")
     if rules in yes_responses:
         print(ruless)
     start = input("Start Game: Yes or No")
     if start in  yes_responses:
-        person_ai = input("Do you want to play with AI or with people").strip().lower()
-        if person_ai in "ai":
-            print(""" 
-                        red │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │ 9 │ 10 │ 11 │ 12 🔒 │
-                     yellow │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │ 9 │ 10 │ 11 │ 12 🔒 │
-                       blue │ 12│ 11│ 10│ 9 │ 8 │ 7 │ 6 │ 5 │ 4  │ 3  │ 2  🔒 │
-                      green │ 12│ 11│ 10│ 9 │ 8 │ 7 │ 6 │ 5 │ 4  │ 3  │ 2  🔒 │""")
-        if person_ai in person_yes:
-            print(""" 
-            red │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │ 9 │ 10 │ 11 │ 12 🔒 │
-         yellow │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │ 9 │ 10 │ 11 │ 12 🔒 │
-           blue │ 12│ 11│ 10│ 9 │ 8 │ 7 │ 6 │ 5 │ 4  │ 3  │ 2  🔒 │
-          green │ 12│ 11│ 10│ 9 │ 8 │ 7 │ 6 │ 5 │ 4  │ 3  │ 2  🔒 │""")
-            #replace code above t
-            roll = input("")
+        print_board()
+        white_1 = random.randint(1,6)
+        white_2 = random.randint(1,6)
+        red = random.randint(1,6)
+        yellow = random.randint(1,6)
+        blue = random.randint(1,6)
+        green = random.randint(1,6)
+        whitetogther = white_1 + white_2
+        print("White rolled: " + str(whitetogther))
+        whichrow = input("Which row do you want? Please input as row,number")
+        redcross = 0
+        if whichrow == "red,2":
+            red2.number = "❌"
+            red2.occupied = "yes"
+            print_board()
+        elif whichrow == "red,3":
+            red3.number = "❌"
+            red3.occupied = "yes"
+            print_board()
+        elif whichrow == "red,4":
+            red4.number = "❌"
+            red4.occupied = "yes"
+            print_board()
+        elif whichrow == "red,5":
+            red5.number = "❌"
+            print_board()
+            red5.occupied = "yes"
+        elif whichrow == "red,6":
+            red6.number = "❌"
+            red6.occupied = "yes"
+            print_board()
+        elif whichrow == "red,7":
+            red7.number = "❌"
+            red7.occupied = "yes"
+            print_board()
+        elif whichrow == "red,8":
+            red8.number = "❌"
+            red8.occupied = "yes"
+            print_board()
+        elif whichrow == "red,9":
+            red9.number = "❌"
+            red9.occupied = "yes"
+            print_board()
+        elif whichrow == "red,10":
+            red10.number = "❌"
+            red10.occupied = "yes"
+            print_board()
+        elif whichrow == "red,11":
+            red11.number = "❌"
+            red11.occupied = "yes"
+            print_board()
+        for space in redrow:
+            if space.occupied == "yes":
+                redcross += 1
+        if redcross == 5 and whitetogther == 12:
+            for space in redrow:
+                space.number = "❌"
+                space.occupied = "yes"
+        Rolldie = input("Do you want to roll a die")
+        if Rolldie in yes_responses:
+            which = input("Which die do you want to roll?").strip().lower()
+            if which == "red":
+                print("Red rolled: " + str(red))
+            if which == "yellow":
+                print("Yellow rolled: " + str(yellow))
+            if which == "blue":
+                print("Blue rolled: " + str(blue))
+            if which == "green":
+                print("Green rolled: " + str(green))
     if start in no_responses:
         print("Ok. see you soon")
 if answer in no_responses:
@@ -172,62 +289,4 @@ if answer in no_responses:
 #while answer not in no_responses or yes_responses:
     #print("Please enter an actual answer please")
     # Make this loop to the start game after this is show
-
-class Spaces:
-    def __init__(self, number, colour, occupied):
-        self.number = number
-        self.colour = colour
-        self.occupied = occupied
-
-
-red2 = Spaces(2, "red", "no")
-red3 = Spaces(3,"red","no")
-red4 = Spaces(4,"red","no")
-red5 = Spaces(5,"red","no")
-red6 = Spaces(6,"red","no")
-red7 = Spaces(7,"red","no")
-red8 = Spaces(8,"red","no")
-red9 = Spaces(9,"red","no")
-red10 = Spaces(10,"red","no")
-red11= Spaces(11,"red","no")
-red12= Spaces(12,"red","no")
-blue2 = Spaces(2, "blue", "no")
-blue3 = Spaces(3,"blue","no")
-blue4 = Spaces(4,"blue","no")
-blue5 = Spaces(5,"blue","no")
-blue6 = Spaces(6,"blue","no")
-blue7 = Spaces(7,"blue","no")
-blue8 = Spaces(8,"blue","no")
-blue9 = Spaces(9,"blue","no")
-blue10 = Spaces(10,"blue","no")
-blue11= Spaces(11,"blue","no")
-blue12= Spaces(12,"blue","no")
-yellow2 = Spaces(2, "yellow", "no")
-yellow3 = Spaces(2, "yellow", "no")
-yellow4 = Spaces(2, "yellow", "no")
-yellow5 = Spaces(2, "yellow", "no")
-yellow6 = Spaces(2, "yellow", "no")
-yellow7 = Spaces(2, "yellow", "no")
-yellow8 = Spaces(2, "yellow", "no")
-yellow9 = Spaces(2, "yellow", "no")
-yellow10 = Spaces(2, "yellow", "no")
-yellow11= Spaces(2, "yellow", "no")
-yellow12= Spaces(2, "yellow", "no")
-green2 = Spaces(2, "green", "no")
-green2 = Spaces(2, "green", "no")
-green3 = Spaces(2, "green", "no")
-green4 = Spaces(2, "green", "no")
-green5 = Spaces(2, "green", "no")
-green6 = Spaces(2, "green", "no")
-green7 = Spaces(2, "green", "no")
-green8 = Spaces(2, "green", "no")
-green9 = Spaces(2, "green", "no")
-green10 = Spaces(2, "green", "no")
-green11= Spaces(2, "green", "no")
-green12= Spaces(2, "green", "no")
-
-
-
-
-
 
