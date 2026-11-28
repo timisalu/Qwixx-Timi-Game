@@ -207,10 +207,10 @@ def print_board():
     print("blue  │ " + str(blue12.number) + "│ " + str(blue11.number) + "│ " + str(blue10.number) + "│ " + str(blue9.number) + " │ " + str(blue8.number) + " │ " + str(blue7.number) + " │ " + str(blue6.number) + " │ " + str(blue5.number) + " │ " + str(blue4.number) + "  │ " + str(blue3.number) + "  │ " + str(blue2.number) + "  🔒│ ")
     print("green │ " + str(green12.number) + "│ " + str(green11.number) + "│ " + str(green10.number) + "│ " + str(green9.number) + " │ " + str(green8.number) + " │ " + str(green7.number) + " │ " + str(green6.number) + " │ " + str(green5.number) + " │ " + str(green4.number) + "  │ " + str(green3.number) + "  │ " + str(green2.number) + "  🔒│ ")
 if answer in yes_responses:
-    rules = input("Do you want the rules")
+    rules = input("Do you want the rules").strip().lower()
     if rules in yes_responses:
         print(ruless)
-    start = input("Start Game: Yes or No")
+    start = input("Start Game: Yes or No").strip().lower()
     if start in  yes_responses:
         print_board()
         white_1 = random.randint(1,6)
@@ -220,67 +220,152 @@ if answer in yes_responses:
         blue = random.randint(1,6)
         green = random.randint(1,6)
         whitetogther = white_1 + white_2
+        print("White 1 rolled: " + str(white_1))
+        print("White 2 rolled: " + str(white_2))
         print("White rolled: " + str(whitetogther))
-        whichrow = input("Which row do you want? Please input as row,number")
+        whichrow = input("Which row do you want? Please input as row,number").strip().lower()
         redcross = 0
         if whichrow == "red,2":
-            red2.number = "❌"
+            redcross =+ 1
+            red2.number = "⛌"
             red2.occupied = "yes"
             print_board()
         elif whichrow == "red,3":
-            red3.number = "❌"
+            redcross =+ 1
+            red3.number = "⛌"
             red3.occupied = "yes"
             print_board()
         elif whichrow == "red,4":
-            red4.number = "❌"
+            redcross =+ 1
+            red4.number = "⛌"
             red4.occupied = "yes"
             print_board()
         elif whichrow == "red,5":
-            red5.number = "❌"
+            redcross =+ 1
+            red5.number = "⛌"
             print_board()
             red5.occupied = "yes"
         elif whichrow == "red,6":
-            red6.number = "❌"
+            redcross =+ 1
+            red6.number = "⛌"
             red6.occupied = "yes"
             print_board()
         elif whichrow == "red,7":
-            red7.number = "❌"
+            redcross =+ 1
+            red7.number = "⛌"
             red7.occupied = "yes"
             print_board()
         elif whichrow == "red,8":
-            red8.number = "❌"
+            red8.number = "⛌"
+            redcross =+ 1
             red8.occupied = "yes"
             print_board()
         elif whichrow == "red,9":
-            red9.number = "❌"
+            redcross =+ 1
+            red9.number = "⛌"
             red9.occupied = "yes"
             print_board()
         elif whichrow == "red,10":
-            red10.number = "❌"
+            redcross =+ 1
+            red10.number = "⛌"
             red10.occupied = "yes"
             print_board()
         elif whichrow == "red,11":
-            red11.number = "❌"
+            redcross =+ 1
+            red11.number = "⛌"
             red11.occupied = "yes"
             print_board()
-        for space in redrow:
-            if space.occupied == "yes":
-                redcross += 1
         if redcross == 5 and whitetogther == 12:
             for space in redrow:
-                space.number = "❌"
+                space.number = "⛌"
                 space.occupied = "yes"
+        else:
+            print("Can only be locked if 5 other numbers have been locked")
+        yellowcross = 0
+        if whichrow == "yellow,2":
+            yellowcross =+ 1
+            yellow2.number = "⛌"
+            yellow2.occupied = "yes"
+            print_board()
+        if whichrow == "yellow,3":
+            yellowcross =+ 1
+            yellow3.number = "⛌"
+            yellow3.occupied = "yes"
+            print_board()
+        if whichrow == "yellow,4":
+            yellowcross =+ 1
+            yellow4.number = "⛌"
+            yellow4.occupied = "yes"
+            print_board()
+        if whichrow == "yellow,5":
+            yellowcross =+ 1
+            yellow5.number = "⛌"
+            yellow5.occupied = "yes"
+            print_board()
+        if whichrow == "yellow,6":
+            yellowcross =+ 1
+            yellow6.number = "⛌"
+            yellow6.occupied = "yes"
+            print_board()
+        if whichrow == "yellow,7":
+            yellowcross =+ 1
+            yellow7.number = "⛌"
+            yellow7.occupied = "yes"
+            print_board()
+        if whichrow == "yellow,8":
+            yellowcross =+ 1
+            yellow8.number = "⛌"
+            yellow8.occupied = "yes"
+            print_board()
+        if whichrow == "yellow,9":
+            yellowcross =+ 1
+            yellow9.number = "⛌"
+            yellow9.occupied = "yes"
+            print_board()
+        if whichrow == "yellow,10":
+            yellowcross =+ 1
+            yellow10.number = "⛌"
+            yellow10.occupied = "yes"
+            print_board()
+        if whichrow == "yellow,11":
+            yellowcross =+ 1
+            yellow11.number = "⛌"
+            yellow11.occupied = "yes"
+            print_board()
+        if whichrow == "yellow,12":
+            if yellowcross == 5 and whitetogther == 12:
+                for space in redrow:
+                    space.number = "⛌"
+                    space.occupied = "yes"
+            if whitetogther == 12 and yellowcross != 5:
+                print("Can only be locked if 5 other numbers have been locked")
+        greencross = 0
+        if whichrow == "green,2":
+            greencross =+ 1
+            green2.number = "⛌"
+            green2.occupied = "yes"
+            print_board()
+        if whichrow == "green,3":
+            greencross =+ 1
+            green3.number = "⛌"
+
         Rolldie = input("Do you want to roll a die")
         if Rolldie in yes_responses:
             which = input("Which die do you want to roll?").strip().lower()
             if which == "red":
                 print("Red rolled: " + str(red))
+
+                lockrow = input("Do you want to cross of the number rolled")
+                #if lockrow in yes_responses:
+
+
             if which == "yellow":
                 print("Yellow rolled: " + str(yellow))
             if which == "blue":
                 print("Blue rolled: " + str(blue))
             if which == "green":
                 print("Green rolled: " + str(green))
+
     if start in no_responses:
         print("Ok. see you soon")
 if answer in no_responses:
