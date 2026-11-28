@@ -198,9 +198,8 @@ no_responses = {"no", "na", "n"}
 person_yes = {"person", "people"}
 ai_response = {"ai", "bot" }
 answer = input("Ready to play Qwixx: Yes or No").strip().lower()
-game_running = True
+#game_running = True
 
-while game_running:
 
 def print_board():
     print("\nred   │ " + str(red2.number) + " │ " + str(red3.number) + " │ " + str(red4.number) +" │ " + str(red5.number) +" │ " + str(red6.number) +" │ " + str(red7.number) + " │ " + str(red8.number) + " │ " + str(red9.number) + " │ " + str(red10.number) +" │ " + str(red11.number) + " │ " + str(red12.number) + " 🔒│" )
